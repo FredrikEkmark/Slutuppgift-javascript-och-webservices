@@ -1,0 +1,192 @@
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#main {
+    margin-top: 4em;
+}
+
+.mainmenu{
+    display: flex; 
+    position: fixed;
+    background-color: cornflowerblue;
+    height: 4em;
+    width: 100%;  
+
+}
+
+.mainmenusides {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+
+}
+
+.menubutton {
+    padding: 0.5em;
+
+}
+
+.menucartbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.4em;
+    width: 3.4em;
+}
+
+.cartimg {
+    display: flex;
+    position: absolute;
+    height: 3em;
+    width: 3em;
+}
+
+#cartcount {
+    display: flex;
+    position: absolute;
+    margin-right: 0.5em;
+}
+
+
+.itemarticle {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    margin: 2em;
+    background-color: aliceblue;
+
+}
+
+.articletop {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.articleleft {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 55%;
+    
+    
+}
+
+.articleleftcenter {
+
+
+}
+
+.rating {
+    height: 1.5em;
+    width:  7.5em;
+}
+
+.star {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.articleright {
+    display: flex;
+    border: 0.3em;
+    border-color: #67676750;
+    border-style: solid;
+    width: 45%;
+    justify-content: center;
+    background-color: white;
+    
+}
+
+.itempicture {
+    margin: 2em;
+    max-width: 18em;
+    max-height: 20em;
+
+}
+
+.cartarticle {
+
+    display: flex;
+    background-color: aliceblue;
+    margin: 1em;
+    margin-left: 2em;
+    padding: 1em;
+    
+}
+
+.cartpicturebox {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+    height: 6em;
+    margin-right: 3em;
+    background-color: white;
+}
+
+.cartpicture {
+
+    max-width: 6em;
+    max-height: 6em;
+}
+
+.logginmain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: aliceblue;
+    
+}
+
+.logginbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 5px 10px #888888;
+    padding: 2em;
+
+}
+
+.logginform {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    width: 15em;
+
+}
+
+.h2loggin {
+    font-size: medium;
+}
+
+#notvaliduser {
+    color: red;
+}
+
+#newuserbuttonmessage {
+    color: red;
+}
+
