@@ -241,8 +241,6 @@ function patchUser(data, id) {
         }
     )
 
-    console.log(body);
-
     fetch("https://firestore.googleapis.com/v1/projects/fakestoreadmin/databases/(default)/documents/user/" + id, {
         method: 'PATCH',
         headers: {
@@ -307,19 +305,19 @@ function updateUserLocal(data) {
     user.city = data.fields.city.stringValue;
 
     localStorage.setItem("user",
-                JSON.stringify({
-                    id: user.id,
-                    username: user.username,
-                    email: user.email,
-                    address: user.address,
-                    postalcode: user.postalcode,
-                    city: user.city,
-                    usertype: user.usertype,
-                    password: user.password,
-                    loggedin: true
-                }));
+        JSON.stringify({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            address: user.address,
+            postalcode: user.postalcode,
+            city: user.city,
+            usertype: user.usertype,
+            password: user.password,
+            loggedin: true
+        }));
 
-    
+
 }
 
 function postOrder(delivery, address, postalcode, city, sum) {
@@ -532,7 +530,7 @@ function patchOrder(id) {
             itemPrice = orderContent[i].mapValue.fields.price.doubleValue;
         }
 
-        
+
 
         orderContent[i] =
         {
@@ -557,8 +555,6 @@ function patchOrder(id) {
         }
     }
 
-    console.log(sum);
-
     let body = JSON.stringify(
         {
             "fields": {
@@ -580,19 +576,74 @@ function patchOrder(id) {
     )
 
     console.log(body);
-    
-fetch("https://firestore.googleapis.com/v1/projects/fakestoreadmin/databases/(default)/documents/order" + id, {
-    method: 'PATCH',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: body
-})
-    .then(res => res.json())
-    .then(data => orderSent(data))
+
+    fetch("https://firestore.googleapis.com/v1/projects/fakestoreadmin/databases/(default)/documents/order" + id, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: body
+    })
+        .then(res => res.json())
+        .then(data => orderUpdated(data))
 
 
     orderDataTemp = {};
+}
+
+function orderUpdated(data) {
+
+    let id = data.name.replace("projects/fakestoreadmin/databases/(default)/documents/order/", "");
+
+    document.getElementById("main").innerHTML = `
+
+        <article class="listelement">
+            <h2>Order Updated</h2><br>
+            <div class="orderinfo">
+            <h3 class="ordertext">Order ID: ${id}</h3>
+            </div>
+            <br>
+            <div class="orderinfo">
+                <p class="ordertext">Username:<br>${data.fields.username.stringValue}</p>
+                <p class="ordertext">User ID:<br>${data.fields.userid.referenceValue.replace("projects/fakestoreadmin/databases/(default)/documents/user/", "")}</p>
+                <p class="ordertext">E-mail:<br>${data.fields.email.stringValue}</p>
+            </div><br><br>
+            <div class="orderinfo">
+                <p class="ordertext">Address:<br>${data.fields.address.stringValue}</p>
+                <p class="ordertext">Postal Code:<br>${data.fields.postalcode.integerValue}</p>
+                <p class="ordertext">City:<br>${data.fields.city.stringValue}</p>
+            </div><br><br>
+            <div class="orderinfo">
+                <p class="ordertext">Order Cost:<br>${data.fields.ordercost.doubleValue} $</p>
+                <p class="ordertext">Delivery Type:<br>${data.fields.delivery.stringValue}</p>
+            </div><br>
+
+            <ol class="ordercontent" id="ordercontent${id}">
+            <h4>Order Content:</h4>
+            <br>
+            </ol>
+        </article>
+        
+        `;
+
+    for (let j = 0; j < data.fields.ordercontent.arrayValue.values.length; j++) {
+
+        let item = data.fields.ordercontent.arrayValue.values[j].mapValue.fields;
+
+        document.getElementById(`ordercontent${id}`).innerHTML += `
+            <li>
+            <h4>${item.title.stringValue}</h4>
+            <div class="orderuserinfo">
+                <p>Item ID: ${item.id.integerValue}
+                <p>Price: ${item.price.doubleValue} $</p>
+                <p>Quantity: ${item.quantity.integerValue}</p>
+            </div>
+            </li><br>
+            
+            `;
+
+    }
+
 }
 
 // Uppdate Main functions //
