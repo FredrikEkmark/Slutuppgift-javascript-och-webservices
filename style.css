@@ -16,23 +16,35 @@ body {
 }
 
 #main {
-    margin-top: 4em;
+    margin: 2em;
+    margin-top: 5em;
+    
 }
 
 .mainmenu{
     display: flex; 
     position: fixed;
+    justify-content: space-between;
     background-color: cornflowerblue;
     height: 4em;
     width: 100%;  
 
 }
 
-.mainmenusides {
+.mainmenuleft {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    width: 50%;
+    width: 60%;
+    height: 100%;
+
+}
+
+.mainmenuright {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
     height: 100%;
 
 }
@@ -178,6 +190,38 @@ body {
 
 }
 
+.orderinfo {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start
+
+}
+
+.orderlist {
+    margin: 2em;
+}
+
+.listelement {
+
+    margin: 1em; 
+    padding: 2em;
+    background-color: aliceblue;
+}
+
+.ordercontent {
+    margin-left: 4em;
+}
+
+.ordertext {
+    margin-right: 7em;
+}
+
+.inputrow {
+    width: 15em;
+}
+    
+
 .h2loggin {
     font-size: medium;
 }
@@ -189,4 +233,11 @@ body {
 #newuserbuttonmessage {
     color: red;
 }
+
+.articlenr {
+    color: #494949;
+    font-size: medium;
+}
+
+
 
